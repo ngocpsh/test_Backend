@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\AccountController;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Api\AccountController;
+use App\Http\Controllers\Api\FileSystemController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,12 +19,8 @@ use Illuminate\Support\Facades\Route;
 //    return $request->user();
 //});
 Route::prefix('v1')->group(function () {
-    Route::prefix('account')->group(function () {
-        Route::get('/', [AccountController::class, 'getAll']);
-        Route::post('/create', [AccountController::class, 'create']);
-        Route::post('/update', [AccountController::class, 'update']);
-        Route::delete('/delete/{id}', [AccountController::class, 'delete']);
-        Route::get('/{id}', [AccountController::class, 'getById']);
-    });
+    Route::resource('account', AccountController::class);
 });
+Route::POST('showSerialpaso', [FileSystemController::class, 'showSerialPaso']);
+
 

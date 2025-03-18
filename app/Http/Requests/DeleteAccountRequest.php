@@ -22,8 +22,8 @@ class DeleteAccountRequest extends FormRequest
     }
     protected function prepareForValidation()
     {
-        if ($this->route('id')) {
-            $this->merge(['id' => $this->route('id')]);
+        if ($this->route('account')) {
+            $this->merge(['id' => $this->route('account')]);
         }
     }
 

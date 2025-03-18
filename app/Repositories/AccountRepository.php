@@ -42,9 +42,9 @@ class AccountRepository implements AccountRepositoryInterface
         return $account;
     }
 
-    public function delete(string $login)
+    public function delete($id)
     {
-        return $this->model->where('login', $login)->delete();
+        return $this->model->where('registerID', $id)->delete();
     }
 
     public function getById($id)

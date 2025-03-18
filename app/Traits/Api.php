@@ -23,4 +23,24 @@ Trait Api
             'error' => $message,
         ], $statusCode);
     }
+
+
+    private function responseFileSuccess($fileName, $content): JsonResponse
+    {
+        return response()->json([
+            'success' => true,
+            "fileName" => $fileName,
+            'content' => $content,
+            'message' => 'Seal Info response successfully',
+        ]);
+    }
+
+    private function responseFileError(): JsonResponse
+    {
+        return response()->json([
+            'success' => false,
+            "fileName" => '',
+            'message' => 'Seal Info response false',
+        ]);
+    }
 }

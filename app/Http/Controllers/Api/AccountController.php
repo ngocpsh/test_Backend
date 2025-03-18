@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
+use App\Http\Requests\CreateRequest;
 use App\Http\Requests\DeleteAccountRequest;
 use App\Http\Requests\GetAccountByIdRequest;
-use App\Http\Requests\CreateRequest;
 use App\Http\Requests\UpdateAccountRequest;
 use App\Repositories\Interfaces\AccountRepositoryInterface;
 use App\Traits\Api;
@@ -23,7 +24,7 @@ class AccountController extends Controller
     {
         $this->accountRepo = $accountRepo;
     }
-    public function getAll(Request $request): JsonResponse
+    public function index(Request $request): JsonResponse
     {
         try {
             $perPage = intval($request->get('perPage', 10));
@@ -37,7 +38,7 @@ class AccountController extends Controller
         }
     }
 
-    public function getById(GetAccountByIdRequest $request): JsonResponse
+    public function show(GetAccountByIdRequest $request): JsonResponse
     {
         try {
             $account = $this->accountRepo->getById($request->validated()['id']);
@@ -48,7 +49,7 @@ class AccountController extends Controller
         }
     }
 
-    public function create(CreateRequest $request): JsonResponse
+    public function store(CreateRequest $request): JsonResponse
     {
         try {
             DB::beginTransaction();
@@ -83,7 +84,7 @@ class AccountController extends Controller
         }
     }
 
-    public function delete(DeleteAccountRequest $request): JsonResponse
+    public function destroy(DeleteAccountRequest $request): JsonResponse
     {
         try {
             DB::beginTransaction();
